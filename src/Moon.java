@@ -3,6 +3,7 @@ public class Moon extends SolarObject{
     public Moon(double angle, double r, int diameter, String col, double CenterX, double CenterY) {
         super(angle, r, diameter, col, CenterX, CenterY);
     }
+
     public void move(double velocity,Planet planet,SolarSystem system,Sun sun ){
         IncreaseAngle(velocity);
         double centrerads = Math.toRadians(planet.getAngle());
