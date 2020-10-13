@@ -63,11 +63,11 @@ public class SolarSystem extends JFrame {
 			if (!this.exiting) {
 				g.clearRect(0, 0, width, height);
 				for (SolarObject t : things) {
-					g.setColor(this.getColourFromString(t.col));
+					g.setColor(this.getColourFromString(t.getCol()));
 					double rads = Math.toRadians(t.getAngle());
-					double x = ( t.CenterX+t.r * Math.sin(rads)) - t.diameter / 2;
-					double y = ( t.CenterY+ t.r * Math.cos(rads)) - t.diameter / 2;
-					g.fillOval((int) x, (int) y, t.diameter, t.diameter);
+					double x = ( t.getCenterX()+t.getR() * Math.sin(rads)) - t.getDiameter() / 2;
+					double y = ( t.getCenterY()+ t.getR() * Math.cos(rads)) - t.getDiameter() / 2;
+					g.fillOval((int) x, (int) y, t.getDiameter(), t.getDiameter());
 
 					//try{ Thread.sleep(0); } catch (Exception e) {} 
 				}
