@@ -149,21 +149,24 @@ public class SolarSystem extends JFrame {
 	public void update() {
 		Planet planets[]=new Planet[8];
 		Sun sun = new Sun(0, 0, 100, "YELLOW", getWidth() / 2, getHeight() / 2);
-		Moon moon = new Moon(0, 50, 10, "BLUE");
+
 		planets[0]=new Planet(-40,70,10,"GRAY",sun,this,1.5 );//Mercury
-		planets[1]=new Planet(-400,140,20,"ORANGE",sun,this,1.3);//Venus
+		planets[1]=new Planet(-400,140,20,"ORANGE",sun,this,1.22);//Venus
 		planets[2]=new Planet(180,210,25,"GREEN",sun,this,1.1);//Earth
 		planets[3]=new Planet(300,280,15,"RED",sun,this,0.9);//Mars
-		planets[4]=new Planet(0,350,45,"WHITE",sun,this,0.7);//Jupiter
-		planets[5]=new Planet(-70,420,40,"GRAY",sun,this,0.5);//Saturn
-		planets[6]=new Planet(90,490,35,"BLUE",sun,this,0.3);//Uranus
-		planets[7]=new Planet(50,520,30,"PINK",sun,this,0.2);//Neptune
+		planets[4]=new Planet(0,360,45,"WHITE",sun,this,0.7);//Jupiter
+		planets[5]=new Planet(-70,430,40,"GRAY",sun,this,0.5);//Saturn
+		planets[6]=new Planet(90,500,35,"BLUE",sun,this,0.3);//Uranus
+		planets[7]=new Planet(50,570,30,"PINK",sun,this,0.2);//Neptune
+		Moon moon = new Moon(0, 20, 10, "WHITE",sun,planets[2],this,1.2);//Moon-earth
 		while (true) {
 			Draw(sun);
 			for(Planet planet:planets){
 				Draw(planet);
 				planet.move();
 			}
+			Draw(moon);
+			moon.move();
 			finishedDrawing();
 		}
 	}

@@ -1,10 +1,17 @@
 public class Moon extends SolarObject{
-
-    public Moon(double angle, double r, int diameter, String col) {
+private Sun sun;
+private Planet planet;
+private SolarSystem system;
+Double velocity;
+    public Moon(double angle, double r, int diameter, String col,Sun sun,Planet planet,SolarSystem system,Double velocity ) {
         super(angle, r, diameter, col);
+        this.sun=sun;
+        this.planet=planet;
+        this.system=system;
+        this.velocity=velocity;
     }
 
-    public void move(double velocity,Planet planet,SolarSystem system,Sun sun ){
+    public void move(){
         IncreaseAngle(velocity);
         double centrerads = Math.toRadians(planet.getAngle());
         double centrerads2 = Math.toRadians(sun.getAngle());
