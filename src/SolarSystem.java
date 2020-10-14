@@ -68,8 +68,7 @@ public class SolarSystem extends JFrame {
 					double x = (t.getCenterX() + t.getR() * Math.sin(rads)) - t.getDiameter() / 2;
 					double y = (t.getCenterY() + t.getR() * Math.cos(rads)) - t.getDiameter() / 2;
 					g.fillOval((int) x, (int) y, t.getDiameter(), t.getDiameter());
-
-					//try{ Thread.sleep(0); } catch (Exception e) {} 
+					try{ Thread.sleep(0); } catch (Exception e) {}
 				}
 			}
 
@@ -124,7 +123,7 @@ public class SolarSystem extends JFrame {
 		}
 	}
 
-	protected void Draw(SolarObject t) {
+	public void Draw(SolarObject t) {
 		synchronized (this) {
 			if (things.size() > 1000) {
 				System.out.println("\n\n");
@@ -148,15 +147,23 @@ public class SolarSystem extends JFrame {
 	}
 
 	public void update() {
+		Planet planets[]=new Planet[8];
 		Sun sun = new Sun(0, 0, 100, "YELLOW", getWidth() / 2, getHeight() / 2);
-		Planet planet = new Planet(0, 120, 30, "RED", 0, 0);
-		Moon moon = new Moon(0, 50, 10, "BLUE", 0, 0);
+		Moon moon = new Moon(0, 50, 10, "BLUE");
+		planets[0]=new Planet(-40,70,10,"GRAY",sun,this,0.5 );//Mercury
+		planets[1]=new Planet(100,140,20,"ORANGE",sun,this,-0.3);//Venus
+		planets[2]=new Planet(100,210,25,"ORANGE",sun,this,3);//Earth
+		planets[3]=new Planet(100,280,15,"ORANGE",sun,this,6);//Mars
+		planets[4]=new Planet(100,350,45,"ORANGE",sun,this,1);//Jupiter
+		planets[5]=new Planet(100,420,40,"ORANGE",sun,this,0.65);//Saturn
+		planets[6]=new Planet(100,490,35,"ORANGE",sun,this,2.5);//Uranus
+		planets[7]=new Planet(100,520,30,"ORANGE",sun,this,4);//Neptune
 		while (true) {
 			Draw(sun);
-			planet.move(0.5, sun, this );
-			Draw(planet);
-			moon.move(2, planet, this, sun);
-			Draw(moon);
+			for(Planet planet:planets){
+				Draw(planet);
+				planet.move();
+			}
 			finishedDrawing();
 		}
 	}

@@ -1,7 +1,7 @@
 public class Moon extends SolarObject{
 
-    public Moon(double angle, double r, int diameter, String col, double CenterX, double CenterY) {
-        super(angle, r, diameter, col, CenterX, CenterY);
+    public Moon(double angle, double r, int diameter, String col) {
+        super(angle, r, diameter, col);
     }
 
     public void move(double velocity,Planet planet,SolarSystem system,Sun sun ){

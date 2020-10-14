@@ -10,14 +10,13 @@ public  class SolarObject {
     private double CenterX;
     private double CenterY;
 
-    public SolarObject(double angle, double r, int diameter, String col,double CenterX,double CenterY) {
+    public SolarObject(double angle, double r, int diameter, String col) {
         this.angle = angle;
         this.r = r;
         this.diameter = diameter;
         this.col = col;
-        this.CenterX=CenterX;
-        this.CenterY=CenterY;
     }
+
 
     public double getAngle() {
         return angle;
