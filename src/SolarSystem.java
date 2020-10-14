@@ -150,14 +150,14 @@ public class SolarSystem extends JFrame {
 		Planet planets[]=new Planet[8];
 		Sun sun = new Sun(0, 0, 100, "YELLOW", getWidth() / 2, getHeight() / 2);
 		Moon moon = new Moon(0, 50, 10, "BLUE");
-		planets[0]=new Planet(-40,70,10,"GRAY",sun,this,0.5 );//Mercury
-		planets[1]=new Planet(100,140,20,"ORANGE",sun,this,-0.3);//Venus
-		planets[2]=new Planet(100,210,25,"ORANGE",sun,this,3);//Earth
-		planets[3]=new Planet(100,280,15,"ORANGE",sun,this,6);//Mars
-		planets[4]=new Planet(100,350,45,"ORANGE",sun,this,1);//Jupiter
-		planets[5]=new Planet(100,420,40,"ORANGE",sun,this,0.65);//Saturn
-		planets[6]=new Planet(100,490,35,"ORANGE",sun,this,2.5);//Uranus
-		planets[7]=new Planet(100,520,30,"ORANGE",sun,this,4);//Neptune
+		planets[0]=new Planet(-40,70,10,"GRAY",sun,this,1.5 );//Mercury
+		planets[1]=new Planet(-400,140,20,"ORANGE",sun,this,1.3);//Venus
+		planets[2]=new Planet(180,210,25,"GREEN",sun,this,1.1);//Earth
+		planets[3]=new Planet(300,280,15,"RED",sun,this,0.9);//Mars
+		planets[4]=new Planet(0,350,45,"WHITE",sun,this,0.7);//Jupiter
+		planets[5]=new Planet(-70,420,40,"GRAY",sun,this,0.5);//Saturn
+		planets[6]=new Planet(90,490,35,"BLUE",sun,this,0.3);//Uranus
+		planets[7]=new Planet(50,520,30,"PINK",sun,this,0.2);//Neptune
 		while (true) {
 			Draw(sun);
 			for(Planet planet:planets){
