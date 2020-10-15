@@ -123,6 +123,10 @@ public class SolarSystem extends JFrame {
 		}
 	}
 
+	/**
+	 * Draw a SolarObject
+	 * @param t SolarObject
+	 */
 	public void Draw(SolarObject t) {
 		synchronized (this) {
 			if (things.size() > 1000) {
@@ -146,6 +150,9 @@ public class SolarSystem extends JFrame {
 		}
 	}
 
+	/**
+	 * create all objects ,draw all objects and update movement of all objects
+	 */
 	public void update() {
 		Planet planets[]=new Planet[8];
 		Moon moons[]=new Moon[13];
