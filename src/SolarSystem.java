@@ -9,8 +9,8 @@ import java.util.*;
  * @author Joe Finney
  */
 public class SolarSystem extends JFrame {
-	private int width = 300;
-	private int height = 300;
+	private int width = 0;
+	private int height = 0;
 	private boolean exiting = false;
 	private Map<RenderingHints.Key, Object> renderingHints;
 
@@ -65,8 +65,8 @@ public class SolarSystem extends JFrame {
 				for (SolarObject t : things) {
 					g.setColor(this.getColourFromString(t.getCol()));
 					double rads = Math.toRadians(t.getAngle());
-					double x = (t.getCenterX() + t.getR() * Math.sin(rads)) - t.getDiameter() / 2;
-					double y = (t.getCenterY() + t.getR() * Math.cos(rads)) - t.getDiameter() / 2;
+					double x = (int)(t.getCenterX() + t.getR() * Math.sin(rads)) - t.getDiameter() / 2;
+					double y =(int )(t.getCenterY() + t.getR() * Math.cos(rads)) - t.getDiameter() / 2;
 					g.fillOval((int) x, (int) y, t.getDiameter(), t.getDiameter());
 					try{ Thread.sleep(0); } catch (Exception e) {}
 				}
@@ -148,25 +148,39 @@ public class SolarSystem extends JFrame {
 
 	public void update() {
 		Planet planets[]=new Planet[8];
+		Moon moons[]=new Moon[13];
 		Sun sun = new Sun(0, 0, 100, "YELLOW", getWidth() / 2, getHeight() / 2);
+		planets[0]=new Planet(0,70,10,"GRAY",sun,this,1.5 );//Mercury
+		planets[1]=new Planet(0,140,20,"ORANGE",sun,this,1.22);//Venus
+		planets[2]=new Planet(0,210,25,"GREEN",sun,this,1.1);//Earth
+		planets[3]=new Planet(0,300,15,"RED",sun,this,0.9);//Mars
+		planets[4]=new Planet(0,380,39,"WHITE",sun,this,0.7);//Jupiter
+		planets[5]=new Planet(0,450,37,"GRAY",sun,this,0.5);//Saturn
+		planets[6]=new Planet(0,530,35,"BLUE",sun,this,0.3);//Uranus
+		planets[7]=new Planet(0,600,30,"PINK",sun,this,0.2);//Neptune
+		moons[0] = new Moon(0, 20, 10, "WHITE",sun,planets[2],this,0.7);//Mearth
+		moons[1] = new Moon(0, 14, 7, "WHITE",sun,planets[3],this,2.5);//Mmars
+		moons[2] = new Moon(0, 26, 7, "WHITE",sun,planets[3],this,1.5);//Mmars
+		moons[3] = new Moon(0, 27, 6, "WHITE",sun,planets[4],this,0.5);//MJupiter
+		moons[4] = new Moon(0, 37, 9, "WHITE",sun,planets[4],this,0.7);//Mjupiter
+		moons[5] = new Moon(0, 49, 6, "WHITE",sun,planets[4],this,1.1);//Mjupiter
+		moons[6] = new Moon(0, 61, 6, "WHITE",sun,planets[4],this,1.4);//Mjuipter
+		moons[7] = new Moon(0, 30, 14, "YELLOW",sun,planets[5],this,0.7);//Msaturn
+		moons[8] = new Moon(0, 45, 8, "WHITE",sun,planets[5],this,1.6);//Msaturn
+		moons[9] = new Moon(0, 30, 8, "GRAY",sun,planets[6],this,1.3);//Muranus
+		moons[10] = new Moon(0, 45, 10, "WHITE",sun,planets[6],this,1.6);//Muranus
+		moons[11] = new Moon(0, 30, 8, "BLUE",sun,planets[7],this,1.5);//Muranus
+		moons[12] = new Moon(0, 45, 10, "RED",sun,planets[7],this,1.6);//Muranus
 
-		planets[0]=new Planet(-40,70,10,"GRAY",sun,this,1.5 );//Mercury
-		planets[1]=new Planet(-400,140,20,"ORANGE",sun,this,1.22);//Venus
-		planets[2]=new Planet(180,210,25,"GREEN",sun,this,1.1);//Earth
-		planets[3]=new Planet(300,280,15,"RED",sun,this,0.9);//Mars
-		planets[4]=new Planet(0,360,45,"WHITE",sun,this,0.7);//Jupiter
-		planets[5]=new Planet(-70,430,40,"GRAY",sun,this,0.5);//Saturn
-		planets[6]=new Planet(90,500,35,"BLUE",sun,this,0.3);//Uranus
-		planets[7]=new Planet(50,570,30,"PINK",sun,this,0.2);//Neptune
-		Moon moon = new Moon(0, 20, 10, "WHITE",sun,planets[2],this,1.2);//Moon-earth
-		while (true) {
-			Draw(sun);
+		while (true) { Draw(sun);
 			for(Planet planet:planets){
 				Draw(planet);
 				planet.move();
 			}
-			Draw(moon);
-			moon.move();
+			for(Moon moon:moons){
+				Draw(moon);
+				moon.move();
+			}
 			finishedDrawing();
 		}
 	}
