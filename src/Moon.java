@@ -2,7 +2,8 @@ public class Moon extends SolarObject {
     private Sun sun;
     private Planet planet;
     private SolarSystem system;
-    Double velocity;
+    private Double velocity;
+
     /***
      *
      * @param angle polar angle is the counterclockwise angle from the x-axis

@@ -1,15 +1,19 @@
 import java.awt.*;
 import java.awt.event.WindowEvent;
 
-public  class SolarObject {
+public class SolarObject {
 
     private double angle;
-    private  double r;
+    private double r;
     private int diameter;
     private String col;
-    /**y position of the origin point*/
+    /**
+     * y position of the origin point
+     */
     private double CenterX;
-    /**x position of the origin point */
+    /**
+     * x position of the origin point
+     */
     private double CenterY;
 
     /***
@@ -49,7 +53,7 @@ public  class SolarObject {
     }
 
     /**
-     *return diameter of the object
+     * return diameter of the object
      */
     public int getDiameter() {
         return diameter;
@@ -63,7 +67,7 @@ public  class SolarObject {
     }
 
     /**
-     *return x position  of the origin
+     * return x position  of the origin
      */
     public double getCenterX() {
         return CenterX;
@@ -71,19 +75,23 @@ public  class SolarObject {
 
     /**
      * set x position  of the origin
+     *
      * @param centerX x position  of the origin
      */
     public void setCenterX(double centerX) {
         CenterX = centerX;
     }
+
     /**
-     *return y position  of the origin
+     * return y position  of the origin
      */
     public double getCenterY() {
         return CenterY;
     }
+
     /**
      * set y position  of the origin
+     *
      * @param centerY x position  of the origin
      */
     public void setCenterY(double centerY) {
