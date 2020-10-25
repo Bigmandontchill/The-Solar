@@ -1,9 +1,6 @@
 public class Moon extends SolarObject {
-<<<<<<< HEAD
+
     private SolarObject planet;
-=======
-    private Planet planet;
->>>>>>> 0d313f27f212bbc741f849fa3d9aad335c24cc1f
 
     /***
      *
@@ -14,14 +11,13 @@ public class Moon extends SolarObject {
      *@param planet associate sun that moon orbit
      * @param velocity speed of the moon
      */
-<<<<<<< HEAD
+
     public Moon(double angle, double r, int diameter, String col, SolarObject planet ,Double velocity) {
-=======
-    public Moon(double angle, double r, int diameter, String col, Planet planet ,Double velocity) {
->>>>>>> 0d313f27f212bbc741f849fa3d9aad335c24cc1f
         super(angle, r, diameter, col,velocity);
-        this.planet = planet;
+        this.planet=planet;
     }
+
+
 
     /**
      * move moon around the planet
