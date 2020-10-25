@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.awt.event.WindowEvent;
 
-public class SolarObject {
+public abstract class SolarObject {
 
     private double angle;
     private double r;
@@ -15,6 +15,10 @@ public class SolarObject {
      * x position of the origin point
      */
     private double CenterY;
+    /**
+     * speed of the object
+     */
+    private double velocity;
 
     /***
      *
@@ -22,13 +26,17 @@ public class SolarObject {
      * @param r  polar coordinate r is the distance from the origin
      * @param diameter size of the object
      * @param col Color of the object
+     * @param velocity speed of the object
      */
-    public SolarObject(double angle, double r, int diameter, String col) {
+    public SolarObject(double angle, double r, int diameter, String col,double velocity) {
         this.angle = angle;
         this.r = r;
         this.diameter = diameter;
         this.col = col;
+        this.velocity=velocity;
     }
+
+    public abstract void move(SolarSystem system);
 
     /**
      * return polar angle
@@ -97,5 +105,13 @@ public class SolarObject {
     public void setCenterY(double centerY) {
         CenterY = centerY;
     }
+
+    /**
+     * return velocity
+     */
+    public double getVelocity() {
+        return velocity;
+    }
+
 }
 

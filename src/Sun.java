@@ -10,16 +10,20 @@ public class Sun extends SolarObject{
      * @param diameter size of the object
      * @param col Color of the object
      * @param CenterX x position of the origin point
-     * @param CenterY x position of the origin point
+     * @param CenterY y position of the origin point
      */
-     public Sun(double angle, double r, int diameter, String col,double CenterX,double CenterY) {
-        super(angle, r, diameter, col);
+     public Sun(double angle, double r, int diameter, String col,double CenterX,double CenterY,double velocity) {
+        super(angle, r, diameter, col,velocity);
         setCenterX(CenterX);
         setCenterY(CenterY);
     }
 
 
+    @Override
+    public void move(SolarSystem system) {
+        system.Draw(this);
     }
+}
 
 
 
