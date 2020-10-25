@@ -52,8 +52,6 @@ public class SolarSystem extends JFrame {
      * A method called by the operating system to draw onto the screen - <p><B>YOU DO NOT (AND SHOULD NOT) NEED TO CALL THIS METHOD.</b></p>
      */
     public void paint(Graphics gr) {
-        double centreOfRotationX = ((double) width) / 2.0;
-        double centreOfRotationY = ((double) height) / 2.0;
         BufferedImage i = new BufferedImage(this.getWidth(), this.getHeight(), BufferedImage.TYPE_INT_ARGB);
         Graphics2D g = i.createGraphics();
         Graphics2D window = (Graphics2D) gr;
@@ -161,40 +159,54 @@ public class SolarSystem extends JFrame {
     public void update() {
         Planet planets[] = new Planet[8];
         Moon moons[] = new Moon[13];
-        Sun sun = new Sun(0, 0, 100, "YELLOW", getWidth() / 2, getHeight() / 2);
-        planets[0] = new Planet(0, 70, 10, "GRAY", sun, this, 1.5);//Mercury
-        planets[1] = new Planet(0, 140, 20, "ORANGE", sun, this, 1.22);//Venus
-        planets[2] = new Planet(0, 210, 25, "GREEN", sun, this, 1.1);//Earth
-        planets[3] = new Planet(0, 300, 15, "RED", sun, this, 0.9);//Mars
-        planets[4] = new Planet(0, 380, 39, "WHITE", sun, this, 0.7);//Jupiter
-        planets[5] = new Planet(0, 450, 37, "GRAY", sun, this, 0.5);//Saturn
-        planets[6] = new Planet(0, 530, 35, "BLUE", sun, this, 0.3);//Uranus
-        planets[7] = new Planet(0, 600, 30, "PINK", sun, this, 0.2);//Neptune
-        moons[0] = new Moon(0, 20, 10, "WHITE", sun, planets[2], this, 0.7);//Mearth
-        moons[1] = new Moon(0, 14, 7, "WHITE", sun, planets[3], this, 2.5);//Mmars
-        moons[2] = new Moon(0, 26, 7, "WHITE", sun, planets[3], this, 1.5);//Mmars
-        moons[3] = new Moon(0, 27, 6, "WHITE", sun, planets[4], this, 0.5);//MJupiter
-        moons[4] = new Moon(0, 37, 9, "WHITE", sun, planets[4], this, 0.7);//Mjupiter
-        moons[5] = new Moon(0, 49, 6, "WHITE", sun, planets[4], this, 1.1);//Mjupiter
-        moons[6] = new Moon(0, 61, 6, "WHITE", sun, planets[4], this, 1.4);//Mjuipter
-        moons[7] = new Moon(0, 30, 14, "YELLOW", sun, planets[5], this, 0.7);//Msaturn
-        moons[8] = new Moon(0, 45, 8, "WHITE", sun, planets[5], this, 1.6);//Msaturn
-        moons[9] = new Moon(0, 30, 8, "GRAY", sun, planets[6], this, 1.3);//Muranus
-        moons[10] = new Moon(0, 45, 10, "WHITE", sun, planets[6], this, 1.6);//Muranus
-        moons[11] = new Moon(0, 30, 8, "BLUE", sun, planets[7], this, 1.5);//Muranus
-        moons[12] = new Moon(0, 45, 10, "RED", sun, planets[7], this, 1.6);//Muranus
-
+        asteroids asteroids=new asteroids(300,0.5,340,280);
+        Sun sun = new Sun(0, 0, 100, "YELLOW", getWidth() / 2, getHeight() / 2, 0);
+        planets[0] = new Planet(0, 70, 10, "GRAY", sun, 1.5);//Mercury
+        planets[1] = new Planet(0, 140, 20, "ORANGE", sun, 1.22);//Venus
+        planets[2] = new Planet(0, 210, 25, "GREEN", sun, 1.1);//Earth
+        planets[3] = new Planet(0, 300, 15, "RED", sun, 0.9);//Mars
+        planets[4] = new Planet(0, 450, 33, "WHITE", sun, 0.6);//Jupiter
+        planets[5] = new Planet(0, 550, 31, "GRAY", sun, 0.42);//Saturn
+        planets[6] = new Planet(0, 650, 29, "BLUE", sun, 0.3);//Uranus
+        planets[7] = new Planet(0, 730, 27, "PINK", sun, 0.2);//Neptune
+        moons[0] = new Moon(0, 20, 10, "WHITE", planets[2], 0.7);//Mearth
+        moons[1] = new Moon(0, 14, 7, "WHITE", planets[3], 2.5);//Mmars
+        moons[2] = new Moon(0, 26, 7, "WHITE", planets[3], 1.5);//Mmars
+        moons[3] = new Moon(0, 27, 6, "WHITE", planets[4], 0.5);//MJupiter
+        moons[4] = new Moon(0, 37, 9, "WHITE", planets[4], 0.7);//Mjupiter
+        moons[5] = new Moon(0, 42, 6, "WHITE", planets[4], 1.1);//Mjupiter
+        moons[6] = new Moon(0, 50, 6, "WHITE", planets[4], 1.4);//Mjuipter
+        moons[7] = new Moon(0, 30, 14, "YELLOW", planets[5], 0.7);//Msaturn
+        moons[8] = new Moon(0, 45, 8, "WHITE", planets[5], 1.6);//Msaturn
+        moons[9] = new Moon(0, 30, 8, "GRAY", planets[6], 1.3);//Muranus
+        moons[10] = new Moon(0, 45, 10, "WHITE", planets[6], 1.6);//Muranus
+        moons[11] = new Moon(0, 30, 8, "BLUE", planets[7], 1.5);//Muranus
+        moons[12] = new Moon(0, 45, 10, "RED", planets[7], 1.6);//Muranus
+        asteroids.generate(sun);
         while (true) {
-            Draw(sun);
+            sun.move(this);
             for (Planet planet : planets) {
-                Draw(planet);
-                planet.move();
+                planet.move(this);
             }
             for (Moon moon : moons) {
-                Draw(moon);
-                moon.move();
+                moon.move(this);
             }
+            asteroids.updateAsteroids(this);
             finishedDrawing();
         }
     }
+
+    /**
+     * update center position of the object
+     */
+    public void update(SolarObject object, SolarObject orbit) {
+        object.IncreaseAngle(object.getVelocity());
+        Draw(object);
+        double centreOfRotationX = orbit.getCenterX() + orbit.getR() * Math.sin(Math.toRadians(orbit.getAngle()));
+        double centreOfRotationY = orbit.getCenterY() + orbit.getR() * Math.cos(Math.toRadians(orbit.getAngle()));
+        object.setCenterX(centreOfRotationX);
+        object.setCenterY(centreOfRotationY);
+    }
+
+    
 }
