@@ -159,7 +159,8 @@ public class SolarSystem extends JFrame {
     public void update() {
         Planet planets[] = new Planet[8];
         Moon moons[] = new Moon[13];
-        asteroids asteroids=new asteroids(300,0.5,340,280);
+        asteroids asteroids=new asteroids(300,0.5,340,280,"RED");
+        asteroids ring =new asteroids(300,0.5,20,10,"WHITE");
         Sun sun = new Sun(0, 0, 100, "YELLOW", getWidth() / 2, getHeight() / 2, 0);
         planets[0] = new Planet(0, 70, 10, "GRAY", sun, 1.5);//Mercury
         planets[1] = new Planet(0, 140, 20, "ORANGE", sun, 1.22);//Venus
@@ -176,13 +177,14 @@ public class SolarSystem extends JFrame {
         moons[4] = new Moon(0, 37, 9, "WHITE", planets[4], 0.7);//Mjupiter
         moons[5] = new Moon(0, 42, 6, "WHITE", planets[4], 1.1);//Mjupiter
         moons[6] = new Moon(0, 50, 6, "WHITE", planets[4], 1.4);//Mjuipter
-        moons[7] = new Moon(0, 30, 14, "YELLOW", planets[5], 0.7);//Msaturn
+        moons[7] = new Moon(0, 38, 6, "YELLOW", planets[5], 0.7);//Msaturn
         moons[8] = new Moon(0, 45, 8, "WHITE", planets[5], 1.6);//Msaturn
         moons[9] = new Moon(0, 30, 8, "GRAY", planets[6], 1.3);//Muranus
         moons[10] = new Moon(0, 45, 10, "WHITE", planets[6], 1.6);//Muranus
         moons[11] = new Moon(0, 30, 8, "BLUE", planets[7], 1.5);//Muranus
         moons[12] = new Moon(0, 45, 10, "RED", planets[7], 1.6);//Muranus
         asteroids.generate(sun);
+        ring.generate(planets[5]);
         while (true) {
             sun.move(this);
             for (Planet planet : planets) {
@@ -192,6 +194,7 @@ public class SolarSystem extends JFrame {
                 moon.move(this);
             }
             asteroids.updateAsteroids(this);
+            ring.updateAsteroids(this);
             finishedDrawing();
         }
     }

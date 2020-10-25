@@ -1,7 +1,7 @@
 import java.awt.*;
 
 public class Planet extends  SolarObject {
-    private Sun sun;
+    private SolarObject sun;
     /***
      *
      * @param angle polar angle is the counterclockwise angle from the x-axis
@@ -11,7 +11,7 @@ public class Planet extends  SolarObject {
      * @param sun associate sun that planet orbit
      * @param velocity speed of the planet
      */
-    public Planet(double angle , double r, int diameter, String col,Sun sun,double velocity) {
+    public Planet(double angle , double r, int diameter, String col,SolarObject sun,double velocity) {
         super(angle, r, diameter, col,velocity);
         this.sun=sun;
     }

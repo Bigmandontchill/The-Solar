@@ -1,5 +1,5 @@
 public class Moon extends SolarObject {
-    private Planet planet;
+    private SolarObject planet;
 
     /***
      *
@@ -10,7 +10,7 @@ public class Moon extends SolarObject {
      *@param planet associate sun that moon orbit
      * @param velocity speed of the moon
      */
-    public Moon(double angle, double r, int diameter, String col, Planet planet ,Double velocity) {
+    public Moon(double angle, double r, int diameter, String col, SolarObject planet ,Double velocity) {
         super(angle, r, diameter, col,velocity);
         this.planet = planet;
     }
